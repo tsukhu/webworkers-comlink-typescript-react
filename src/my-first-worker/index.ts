@@ -1,12 +1,14 @@
 import { expose } from "comlink";
 import {
-  takeALongTimeToDoSomething,
-  takeALongTimeToAddTwoNumbers,
-} from "../takeALongTimeToDoSomething";
-
+  longAppInitialization,
+  longBlockingAddition,
+} from "../blockingTasks";
+import { getSentimentScore, initModel } from "../components/tensor/tensorFlowWorker";
 const exports = {
-  takeALongTimeToDoSomething,
-  takeALongTimeToAddTwoNumbers,
+  longAppInitialization,
+  longBlockingAddition,
+  getSentimentScore,
+  initModel,
 };
 export type MyFirstWorker = typeof exports;
 

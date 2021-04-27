@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "tensorApp copy.tsx"  ]
 }

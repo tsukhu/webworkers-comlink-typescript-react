@@ -1,4 +1,4 @@
-export function takeALongTimeToDoSomething() {
+export function longAppInitialization() {
   console.log("Start our long running job...");
   const seconds = 5;
   const start = new Date().getTime();
@@ -12,7 +12,7 @@ export function takeALongTimeToDoSomething() {
   console.log("Finished our long running job");
 }
 
-export function takeALongTimeToAddTwoNumbers(number1: number, number2: number) {
+export function longBlockingAddition(number1: number, number2: number) {
   console.log("Start to add...");
   const seconds = 5;
   const start = new Date().getTime();

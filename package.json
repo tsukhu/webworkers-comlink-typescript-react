@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tensorflow/tfjs": "^3.5.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -11,8 +12,11 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "comlink": "^4.3.0",
+    "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-fps-stats": "^0.1.3",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1",
@@ -20,7 +24,11 @@
   },
   "scripts": {
     "start": "craco start",
+    "start:mt": "cross-env REACT_APP_MAIN_INIT=true craco start",
+    "start:ww": "cross-env REACT_APP_WW_INIT=true craco start",
     "build": "craco build",
+    "build:mt": "cross-env REACT_APP_MAIN_INIT=true craco build",
+    "build:ww": "cross-env REACT_APP_WW_INIT=true craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -43,6 +51,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.1.1"
+    "@craco/craco": "^6.1.1",
+    "@types/react-router-dom": "^5.1.7"
   }
 }

@@ -1,25 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-// -------- Start Main Thread code ---------
-import { takeALongTimeToDoSomething } from "./takeALongTimeToDoSomething";
-// -------- End Main Thread code ---------
 
-/*
-  // -------- Start Web Worker Thread code ---------
+// -------- Start Web Worker Thread code ---------
 import { wrap } from "comlink";
-  function takeALongTimeToDoSomething() {
-    const worker = new Worker('./my-first-worker', { name: 'my-first-worker', type: 'module' });
-    const workerApi = wrap<import('./my-first-worker').MyFirstWorker>(worker);
-    workerApi.takeALongTimeToDoSomething();    
-}  
- // -------- End Web Worker Thread code ---------
-*/
 
-takeALongTimeToDoSomething();
+function longAppInitialization() {
+  const worker = new Worker("./my-first-worker", {
+    name: "my-first-worker",
+    type: "module",
+  });
+  const workerApi = wrap<import("./my-first-worker").MyFirstWorker>(worker);
+  workerApi.longAppInitialization();
+}
+// -------- End Web Worker Thread code ---------
+
+console.log(process.env);
+if (process.env.REACT_APP_MAIN_INIT) {
+  import("./blockingTasks").then((m) => m.longAppInitialization());
+}
+// -------- Start Main Thread code ---------
+if (process.env.REACT_APP_WW_INIT) {
+  longAppInitialization();
+}
+// -------- End Main Thread code --------- 
 
 ReactDOM.render(
   <React.StrictMode>

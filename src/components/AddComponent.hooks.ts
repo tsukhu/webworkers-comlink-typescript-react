@@ -1,6 +1,5 @@
 import { wrap, releaseProxy } from "comlink";
 import { useEffect, useState, useMemo } from "react";
-import { takeALongTimeToAddTwoNumbers } from "./takeALongTimeToDoSomething";
 /**
  * Our hook that performs the calculation on the worker
  */
@@ -15,27 +14,18 @@ export function useTakeALongTimeToAddTwoNumbers(
   });
 
   // -------- Start Web Worker Thread code ---------
-  /*  // acquire our worker
+  // acquire our worker
   const { workerApi } = useWorker();
 
   useEffect(() => {
     // We're starting the calculation here
     setData({ isCalculating: true, total: undefined });
     workerApi
-      .takeALongTimeToAddTwoNumbers(number1, number2)
+      .longBlockingAddition(number1, number2)
       .then((total) => setData({ isCalculating: false, total })); // We receive the result here
-  }, [workerApi, setData, number1, number2]); */
+  }, [workerApi, setData, number1, number2]);
 
   // -------- End Web Worker Thread code ---------
-
-  // -------- Start Main Thread code ---------
-  useEffect(() => {
-    // We're starting the calculation here
-    setData({ isCalculating: true, total: undefined });
-    const total = takeALongTimeToAddTwoNumbers(number1, number2);
-    setData({ isCalculating: false, total }); // We receive the result here
-  }, [setData, number1, number2]);
-  // -------- End Main Thread code ---------
 
   return data;
 }
@@ -62,11 +52,11 @@ function useWorker() {
  */
 function makeWorkerApiAndCleanup() {
   // Here we create our worker and wrap it with comlink so we can interact with it
-  const worker = new Worker("./my-first-worker", {
+  const worker = new Worker("../my-first-worker", {
     name: "my-first-worker",
     type: "module",
   });
-  const workerApi = wrap<import("./my-first-worker").MyFirstWorker>(worker);
+  const workerApi = wrap<import("../my-first-worker").MyFirstWorker>(worker);
 
   // A cleanup function that releases the comlink proxy and terminates the worker
   const cleanup = () => {

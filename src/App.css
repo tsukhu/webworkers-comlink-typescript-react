@@ -1,19 +1,13 @@
-
-.container {
-  margin: auto;
-  width: 80%;
-  display: flex;
-  background-color: transparent;
-}
-
 .path {
   position: relative;
   overflow: hidden;
-  width: 800px;
+  align-items: center;
+  text-align: center;
+  width: auto;
+  border-radius: 5px;
   height: 80px;
-  background-color: #c1c1c1;
+  background-color: #f8e1e1;
   margin: 2rem;
-  
 }
 .shape {
   position: absolute;
@@ -24,7 +18,7 @@
   display: block;
   top: 0;
 
-  x-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
   animation: ani 1.7s infinite;
 }
 
